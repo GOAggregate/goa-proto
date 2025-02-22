@@ -6,6 +6,7 @@ option go_package = "s-a-b-r.sso.v1;sso";
 
 service Auth {
   rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc CheckRegisterCode (CheckRegisterCodeRequest) returns (CheckRegisterCodeResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
 }
@@ -35,4 +36,13 @@ message IsAdminRequest {
 
 message IsAdminResponse {
   bool is_admin = 1;
+}
+
+message CheckRegisterCodeRequest {
+  int64 user_id = 1;
+  string code = 2;
+}
+
+message CheckRegisterCodeResponse {
+  bool ok = 1;
 }
