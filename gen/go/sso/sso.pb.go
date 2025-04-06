@@ -581,6 +581,206 @@ func (x *GetRoleResponse) GetRoleId() uint32 {
 	return 0
 }
 
+type CreateTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	TokenName     string                 `protobuf:"bytes,3,opt,name=token_name,json=tokenName,proto3" json:"token_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateTokenRequest) Reset() {
+	*x = CreateTokenRequest{}
+	mi := &file_sso_sso_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTokenRequest) ProtoMessage() {}
+
+func (x *CreateTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTokenRequest.ProtoReflect.Descriptor instead.
+func (*CreateTokenRequest) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *CreateTokenRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *CreateTokenRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *CreateTokenRequest) GetTokenName() string {
+	if x != nil {
+		return x.TokenName
+	}
+	return ""
+}
+
+type CreateTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateTokenResponse) Reset() {
+	*x = CreateTokenResponse{}
+	mi := &file_sso_sso_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTokenResponse) ProtoMessage() {}
+
+func (x *CreateTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTokenResponse.ProtoReflect.Descriptor instead.
+func (*CreateTokenResponse) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *CreateTokenResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+type GetTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TokenName     string                 `protobuf:"bytes,2,opt,name=token_name,json=tokenName,proto3" json:"token_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTokenRequest) Reset() {
+	*x = GetTokenRequest{}
+	mi := &file_sso_sso_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokenRequest) ProtoMessage() {}
+
+func (x *GetTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokenRequest.ProtoReflect.Descriptor instead.
+func (*GetTokenRequest) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetTokenRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *GetTokenRequest) GetTokenName() string {
+	if x != nil {
+		return x.TokenName
+	}
+	return ""
+}
+
+type GetTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTokenResponse) Reset() {
+	*x = GetTokenResponse{}
+	mi := &file_sso_sso_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokenResponse) ProtoMessage() {}
+
+func (x *GetTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokenResponse.ProtoReflect.Descriptor instead.
+func (*GetTokenResponse) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetTokenResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 var File_sso_sso_proto protoreflect.FileDescriptor
 
 const file_sso_sso_proto_rawDesc = "" +
@@ -613,14 +813,29 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\x0eGetRoleRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"*\n" +
 	"\x0fGetRoleResponse\x12\x17\n" +
-	"\arole_id\x18\x01 \x01(\rR\x06roleId2\x8c\x03\n" +
+	"\arole_id\x18\x01 \x01(\rR\x06roleId\"b\n" +
+	"\x12CreateTokenRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1d\n" +
+	"\n" +
+	"token_name\x18\x03 \x01(\tR\ttokenName\"%\n" +
+	"\x13CreateTokenResponse\x12\x0e\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\"I\n" +
+	"\x0fGetTokenRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x1d\n" +
+	"\n" +
+	"token_name\x18\x02 \x01(\tR\ttokenName\"(\n" +
+	"\x10GetTokenResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token2\x8b\x04\n" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x12T\n" +
 	"\x11CheckRegisterCode\x12\x1e.auth.CheckRegisterCodeRequest\x1a\x1f.auth.CheckRegisterCodeResponse\x12Q\n" +
 	"\x10SendRegisterCode\x12\x1d.auth.SendRegisterCodeRequest\x1a\x1e.auth.SendRegisterCodeResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x126\n" +
 	"\aGetRole\x12\x14.auth.GetRoleRequest\x1a\x15.auth.GetRoleResponse\x126\n" +
-	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponseB\x14Z\x12s-a-b-r.sso.v1;ssob\x06proto3"
+	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\x12B\n" +
+	"\vCreateToken\x12\x18.auth.CreateTokenRequest\x1a\x19.auth.CreateTokenResponse\x129\n" +
+	"\bGetToken\x12\x15.auth.GetTokenRequest\x1a\x16.auth.GetTokenResponseB\x14Z\x12s-a-b-r.sso.v1;ssob\x06proto3"
 
 var (
 	file_sso_sso_proto_rawDescOnce sync.Once
@@ -634,7 +849,7 @@ func file_sso_sso_proto_rawDescGZIP() []byte {
 	return file_sso_sso_proto_rawDescData
 }
 
-var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_sso_sso_proto_goTypes = []any{
 	(*RegisterRequest)(nil),           // 0: auth.RegisterRequest
 	(*RegisterResponse)(nil),          // 1: auth.RegisterResponse
@@ -648,6 +863,10 @@ var file_sso_sso_proto_goTypes = []any{
 	(*SendRegisterCodeResponse)(nil),  // 9: auth.SendRegisterCodeResponse
 	(*GetRoleRequest)(nil),            // 10: auth.GetRoleRequest
 	(*GetRoleResponse)(nil),           // 11: auth.GetRoleResponse
+	(*CreateTokenRequest)(nil),        // 12: auth.CreateTokenRequest
+	(*CreateTokenResponse)(nil),       // 13: auth.CreateTokenResponse
+	(*GetTokenRequest)(nil),           // 14: auth.GetTokenRequest
+	(*GetTokenResponse)(nil),          // 15: auth.GetTokenResponse
 }
 var file_sso_sso_proto_depIdxs = []int32{
 	0,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
@@ -656,14 +875,18 @@ var file_sso_sso_proto_depIdxs = []int32{
 	2,  // 3: auth.Auth.Login:input_type -> auth.LoginRequest
 	10, // 4: auth.Auth.GetRole:input_type -> auth.GetRoleRequest
 	4,  // 5: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	1,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponse
-	7,  // 7: auth.Auth.CheckRegisterCode:output_type -> auth.CheckRegisterCodeResponse
-	9,  // 8: auth.Auth.SendRegisterCode:output_type -> auth.SendRegisterCodeResponse
-	3,  // 9: auth.Auth.Login:output_type -> auth.LoginResponse
-	11, // 10: auth.Auth.GetRole:output_type -> auth.GetRoleResponse
-	5,  // 11: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	6,  // [6:12] is the sub-list for method output_type
-	0,  // [0:6] is the sub-list for method input_type
+	12, // 6: auth.Auth.CreateToken:input_type -> auth.CreateTokenRequest
+	14, // 7: auth.Auth.GetToken:input_type -> auth.GetTokenRequest
+	1,  // 8: auth.Auth.Register:output_type -> auth.RegisterResponse
+	7,  // 9: auth.Auth.CheckRegisterCode:output_type -> auth.CheckRegisterCodeResponse
+	9,  // 10: auth.Auth.SendRegisterCode:output_type -> auth.SendRegisterCodeResponse
+	3,  // 11: auth.Auth.Login:output_type -> auth.LoginResponse
+	11, // 12: auth.Auth.GetRole:output_type -> auth.GetRoleResponse
+	5,  // 13: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	13, // 14: auth.Auth.CreateToken:output_type -> auth.CreateTokenResponse
+	15, // 15: auth.Auth.GetToken:output_type -> auth.GetTokenResponse
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -680,7 +903,7 @@ func file_sso_sso_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sso_sso_proto_rawDesc), len(file_sso_sso_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

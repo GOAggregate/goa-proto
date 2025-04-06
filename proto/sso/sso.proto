@@ -11,6 +11,8 @@ service Auth {
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc GetRole (GetRoleRequest) returns (GetRoleResponse);
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+  rpc CreateToken (CreateTokenRequest) returns (CreateTokenResponse);
+  rpc GetToken (GetTokenRequest) returns (GetTokenResponse);
 }
 
 message RegisterRequest {
@@ -63,4 +65,23 @@ message GetRoleRequest {
 
 message GetRoleResponse {
   uint32 role_id = 1;
+}
+
+message CreateTokenRequest {
+  int64 user_id = 1;
+  string token = 2;
+  string token_name = 3;
+}
+
+message CreateTokenResponse {
+  bool ok = 1;
+}
+
+message GetTokenRequest {
+  int64 user_id = 1;
+  string token_name = 2;
+}
+
+message GetTokenResponse {
+  string token = 1;
 }

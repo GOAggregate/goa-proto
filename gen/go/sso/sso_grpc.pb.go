@@ -25,6 +25,8 @@ const (
 	Auth_Login_FullMethodName             = "/auth.Auth/Login"
 	Auth_GetRole_FullMethodName           = "/auth.Auth/GetRole"
 	Auth_IsAdmin_FullMethodName           = "/auth.Auth/IsAdmin"
+	Auth_CreateToken_FullMethodName       = "/auth.Auth/CreateToken"
+	Auth_GetToken_FullMethodName          = "/auth.Auth/GetToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -37,6 +39,8 @@ type AuthClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	GetRole(ctx context.Context, in *GetRoleRequest, opts ...grpc.CallOption) (*GetRoleResponse, error)
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponse, error)
+	CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error)
+	GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error)
 }
 
 type authClient struct {
@@ -107,6 +111,26 @@ func (c *authClient) IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...gr
 	return out, nil
 }
 
+func (c *authClient) CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_CreateToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_GetToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -117,6 +141,8 @@ type AuthServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	GetRole(context.Context, *GetRoleRequest) (*GetRoleResponse, error)
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error)
+	CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error)
+	GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -144,6 +170,12 @@ func (UnimplementedAuthServer) GetRole(context.Context, *GetRoleRequest) (*GetRo
 }
 func (UnimplementedAuthServer) IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsAdmin not implemented")
+}
+func (UnimplementedAuthServer) CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
+}
+func (UnimplementedAuthServer) GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetToken not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -274,6 +306,42 @@ func _Auth_IsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).CreateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_CreateToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).CreateToken(ctx, req.(*CreateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_GetToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetToken(ctx, req.(*GetTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +372,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsAdmin",
 			Handler:    _Auth_IsAdmin_Handler,
+		},
+		{
+			MethodName: "CreateToken",
+			Handler:    _Auth_CreateToken_Handler,
+		},
+		{
+			MethodName: "GetToken",
+			Handler:    _Auth_GetToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
