@@ -493,6 +493,94 @@ func (x *SendRegisterCodeResponse) GetOk() bool {
 	return false
 }
 
+type GetRoleRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRoleRequest) Reset() {
+	*x = GetRoleRequest{}
+	mi := &file_sso_sso_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRoleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRoleRequest) ProtoMessage() {}
+
+func (x *GetRoleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRoleRequest.ProtoReflect.Descriptor instead.
+func (*GetRoleRequest) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetRoleRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type GetRoleResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RoleId        uint32                 `protobuf:"varint,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRoleResponse) Reset() {
+	*x = GetRoleResponse{}
+	mi := &file_sso_sso_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRoleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRoleResponse) ProtoMessage() {}
+
+func (x *GetRoleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRoleResponse.ProtoReflect.Descriptor instead.
+func (*GetRoleResponse) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetRoleResponse) GetRoleId() uint32 {
+	if x != nil {
+		return x.RoleId
+	}
+	return 0
+}
+
 var File_sso_sso_proto protoreflect.FileDescriptor
 
 const file_sso_sso_proto_rawDesc = "" +
@@ -521,12 +609,17 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\x17SendRegisterCodeRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"*\n" +
 	"\x18SendRegisterCodeResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok2\xd4\x02\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\")\n" +
+	"\x0eGetRoleRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"*\n" +
+	"\x0fGetRoleResponse\x12\x17\n" +
+	"\arole_id\x18\x01 \x01(\rR\x06roleId2\x8c\x03\n" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x12T\n" +
 	"\x11CheckRegisterCode\x12\x1e.auth.CheckRegisterCodeRequest\x1a\x1f.auth.CheckRegisterCodeResponse\x12Q\n" +
 	"\x10SendRegisterCode\x12\x1d.auth.SendRegisterCodeRequest\x1a\x1e.auth.SendRegisterCodeResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x126\n" +
+	"\aGetRole\x12\x14.auth.GetRoleRequest\x1a\x15.auth.GetRoleResponse\x126\n" +
 	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponseB\x14Z\x12s-a-b-r.sso.v1;ssob\x06proto3"
 
 var (
@@ -541,7 +634,7 @@ func file_sso_sso_proto_rawDescGZIP() []byte {
 	return file_sso_sso_proto_rawDescData
 }
 
-var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_sso_sso_proto_goTypes = []any{
 	(*RegisterRequest)(nil),           // 0: auth.RegisterRequest
 	(*RegisterResponse)(nil),          // 1: auth.RegisterResponse
@@ -553,23 +646,27 @@ var file_sso_sso_proto_goTypes = []any{
 	(*CheckRegisterCodeResponse)(nil), // 7: auth.CheckRegisterCodeResponse
 	(*SendRegisterCodeRequest)(nil),   // 8: auth.SendRegisterCodeRequest
 	(*SendRegisterCodeResponse)(nil),  // 9: auth.SendRegisterCodeResponse
+	(*GetRoleRequest)(nil),            // 10: auth.GetRoleRequest
+	(*GetRoleResponse)(nil),           // 11: auth.GetRoleResponse
 }
 var file_sso_sso_proto_depIdxs = []int32{
-	0, // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
-	6, // 1: auth.Auth.CheckRegisterCode:input_type -> auth.CheckRegisterCodeRequest
-	8, // 2: auth.Auth.SendRegisterCode:input_type -> auth.SendRegisterCodeRequest
-	2, // 3: auth.Auth.Login:input_type -> auth.LoginRequest
-	4, // 4: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	1, // 5: auth.Auth.Register:output_type -> auth.RegisterResponse
-	7, // 6: auth.Auth.CheckRegisterCode:output_type -> auth.CheckRegisterCodeResponse
-	9, // 7: auth.Auth.SendRegisterCode:output_type -> auth.SendRegisterCodeResponse
-	3, // 8: auth.Auth.Login:output_type -> auth.LoginResponse
-	5, // 9: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
+	6,  // 1: auth.Auth.CheckRegisterCode:input_type -> auth.CheckRegisterCodeRequest
+	8,  // 2: auth.Auth.SendRegisterCode:input_type -> auth.SendRegisterCodeRequest
+	2,  // 3: auth.Auth.Login:input_type -> auth.LoginRequest
+	10, // 4: auth.Auth.GetRole:input_type -> auth.GetRoleRequest
+	4,  // 5: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
+	1,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponse
+	7,  // 7: auth.Auth.CheckRegisterCode:output_type -> auth.CheckRegisterCodeResponse
+	9,  // 8: auth.Auth.SendRegisterCode:output_type -> auth.SendRegisterCodeResponse
+	3,  // 9: auth.Auth.Login:output_type -> auth.LoginResponse
+	11, // 10: auth.Auth.GetRole:output_type -> auth.GetRoleResponse
+	5,  // 11: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_sso_sso_proto_init() }
@@ -583,7 +680,7 @@ func file_sso_sso_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sso_sso_proto_rawDesc), len(file_sso_sso_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

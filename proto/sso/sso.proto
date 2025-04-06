@@ -9,6 +9,7 @@ service Auth {
   rpc CheckRegisterCode (CheckRegisterCodeRequest) returns (CheckRegisterCodeResponse);
   rpc SendRegisterCode (SendRegisterCodeRequest) returns (SendRegisterCodeResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
+  rpc GetRole (GetRoleRequest) returns (GetRoleResponse);
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
 }
 
@@ -54,4 +55,12 @@ message SendRegisterCodeRequest {
 
 message SendRegisterCodeResponse {
   bool ok = 1;
+}
+
+message GetRoleRequest {
+  int64 user_id = 1;
+}
+
+message GetRoleResponse {
+  uint32 role_id = 1;
 }

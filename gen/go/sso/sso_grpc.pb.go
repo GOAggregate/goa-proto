@@ -23,6 +23,7 @@ const (
 	Auth_CheckRegisterCode_FullMethodName = "/auth.Auth/CheckRegisterCode"
 	Auth_SendRegisterCode_FullMethodName  = "/auth.Auth/SendRegisterCode"
 	Auth_Login_FullMethodName             = "/auth.Auth/Login"
+	Auth_GetRole_FullMethodName           = "/auth.Auth/GetRole"
 	Auth_IsAdmin_FullMethodName           = "/auth.Auth/IsAdmin"
 )
 
@@ -34,6 +35,7 @@ type AuthClient interface {
 	CheckRegisterCode(ctx context.Context, in *CheckRegisterCodeRequest, opts ...grpc.CallOption) (*CheckRegisterCodeResponse, error)
 	SendRegisterCode(ctx context.Context, in *SendRegisterCodeRequest, opts ...grpc.CallOption) (*SendRegisterCodeResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	GetRole(ctx context.Context, in *GetRoleRequest, opts ...grpc.CallOption) (*GetRoleResponse, error)
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponse, error)
 }
 
@@ -85,6 +87,16 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	return out, nil
 }
 
+func (c *authClient) GetRole(ctx context.Context, in *GetRoleRequest, opts ...grpc.CallOption) (*GetRoleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetRoleResponse)
+	err := c.cc.Invoke(ctx, Auth_GetRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IsAdminResponse)
@@ -103,6 +115,7 @@ type AuthServer interface {
 	CheckRegisterCode(context.Context, *CheckRegisterCodeRequest) (*CheckRegisterCodeResponse, error)
 	SendRegisterCode(context.Context, *SendRegisterCodeRequest) (*SendRegisterCodeResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	GetRole(context.Context, *GetRoleRequest) (*GetRoleResponse, error)
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
@@ -125,6 +138,9 @@ func (UnimplementedAuthServer) SendRegisterCode(context.Context, *SendRegisterCo
 }
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedAuthServer) GetRole(context.Context, *GetRoleRequest) (*GetRoleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRole not implemented")
 }
 func (UnimplementedAuthServer) IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsAdmin not implemented")
@@ -222,6 +238,24 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_GetRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetRole(ctx, req.(*GetRoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_IsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IsAdminRequest)
 	if err := dec(in); err != nil {
@@ -262,6 +296,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _Auth_Login_Handler,
+		},
+		{
+			MethodName: "GetRole",
+			Handler:    _Auth_GetRole_Handler,
 		},
 		{
 			MethodName: "IsAdmin",
